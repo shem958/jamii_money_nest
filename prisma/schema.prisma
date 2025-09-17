@@ -1,0 +1,76 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String   @unique
+  password  String
+  payday    Int // e.g., 30 → salary date
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wallets      Wallet[]
+  transactions Transaction[]
+  goals        Goal[]
+  chamaMembers ChamaMember[]
+}
+
+model Wallet {
+  id        String   @id @default(cuid())
+  userId    String
+  provider  String // M-Pesa, Airtel, T-Kash
+  balance   Float    @default(0)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Transaction {
+  id       String   @id @default(cuid())
+  userId   String
+  amount   Float
+  category String // food, rent, transport, etc.
+  type     String // income / expense
+  date     DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Goal {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String // e.g., "School Fees"
+  target    Float
+  saved     Float    @default(0)
+  deadline  DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Chama {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  members ChamaMember[]
+}
+
+model ChamaMember {
+  id      String @id @default(cuid())
+  userId  String
+  chamaId String
+  role    String // admin / member
+  amount  Float  @default(0)
+
+  user  User  @relation(fields: [userId], references: [id])
+  chama Chama @relation(fields: [chamaId], references: [id])
+}
