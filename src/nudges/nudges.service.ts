@@ -1,26 +1,47 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, Nudge } from '@prisma/client';
+import { Nudge } from '@prisma/client';
 import { PrismaService } from '../common/prisma.service'; // ✅ Correct path
+import { CreateNudgeDto } from './dto/create-nudge.dto';
+import { UpdateNudgeDto } from './dto/update-nudge.dto';
 
 @Injectable()
 export class NudgesService {
     constructor(private prisma: PrismaService) { }
 
-    create(data: Prisma.NudgeCreateInput) {
+    async create(data: CreateNudgeDto): Promise<Nudge> {
         return this.prisma.nudge.create({ data });
     }
 
-    findAllByUser(userId: string) {
+    async findAllByUser(userId: string): Promise<Nudge[]> {
         return this.prisma.nudge.findMany({
             where: { userId },
             orderBy: { scheduledAt: 'asc' },
         });
     }
 
-    markAsRead(id: string) {
+    async findOne(id: string): Promise<Nudge | null> {
+        return this.prisma.nudge.findUnique({
+            where: { id },
+        });
+    }
+
+    async update(id: string, data: UpdateNudgeDto): Promise<Nudge> {
+        return this.prisma.nudge.update({
+            where: { id },
+            data,
+        });
+    }
+
+    async markAsRead(id: string): Promise<Nudge> {
         return this.prisma.nudge.update({
             where: { id },
             data: { read: true },
+        });
+    }
+
+    async remove(id: string): Promise<Nudge> {
+        return this.prisma.nudge.delete({
+            where: { id },
         });
     }
 }
