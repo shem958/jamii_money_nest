@@ -21,8 +21,7 @@ model User {
   transactions Transaction[]
   goals        Goal[]
   chamaMembers ChamaMember[]
-    nudges       Nudge[]      // ➕ Add this line
-
+  nudges       Nudge[] // ➕ Add this line
 }
 
 model Wallet {
@@ -80,9 +79,9 @@ model ChamaMember {
 model Nudge {
   id          String   @id @default(cuid())
   userId      String
-  message     String        // e.g. “Remember to save for your goal!”
-  type        String        // e.g. reminder | tip | alert
-  scheduledAt DateTime      // when to send the nudge
+  message     String // e.g. “Remember to save for your goal!”
+  type        String // e.g. reminder | tip | alert
+  scheduledAt DateTime // when to send the nudge
   createdAt   DateTime @default(now())
   read        Boolean  @default(false)
 
