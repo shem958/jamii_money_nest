@@ -4,8 +4,9 @@ import { AuthModule } from './auth/auth.module';
 import { WalletsModule } from './wallets/wallets.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { GoalsModule } from './goals/goals.module';
+import { ChamasModule } from './chamas/chamas.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, WalletsModule, TransactionsModule, GoalsModule],
+  imports: [UsersModule, AuthModule, WalletsModule, TransactionsModule, GoalsModule, ChamasModule],
 })
 export class AppModule {}
