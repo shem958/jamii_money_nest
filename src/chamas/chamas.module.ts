@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ChamasService } from './chamas.service';
 import { ChamasController } from './chamas.controller';
+import { PrismaService } from '../common/prisma.service';
 
 @Module({
-  providers: [ChamasService],
-  controllers: [ChamasController]
+  controllers: [ChamasController],
+  providers: [ChamasService, PrismaService],
 })
-export class ChamasModule {}
+export class ChamasModule { }
