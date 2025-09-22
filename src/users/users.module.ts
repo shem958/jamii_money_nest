@@ -8,4 +8,4 @@ import { PrismaService } from '../common/prisma.service';
   providers: [UsersService, PrismaService],
   exports: [UsersService], // 👈 so AuthModule can reuse it later
 })
-export class UsersModule {}
+export class UsersModule { }
