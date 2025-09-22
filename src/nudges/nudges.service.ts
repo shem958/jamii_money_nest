@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../common/prisma.service'; // ✅ Correct path
+import { PrismaService } from '../common/prisma.service';
 import { CreateNudgeDto } from './dto/create-nudge.dto';
 import { UpdateNudgeDto } from './dto/update-nudge.dto';
 
