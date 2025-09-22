@@ -8,11 +8,11 @@ export class CreateGoalDto {
     title: string;
 
     @IsNumber()
-    targetAmount: number;
+    target: number;        // ✅ matches schema
 
     @IsNumber()
-    currentAmount: number;
+    saved: number;         // optional if you want to allow starting amount
 
     @IsDateString()
-    deadline: string; // ISO date string
+    deadline: string;
 }
