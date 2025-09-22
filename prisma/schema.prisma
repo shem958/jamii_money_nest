@@ -21,6 +21,8 @@ model User {
   transactions Transaction[]
   goals        Goal[]
   chamaMembers ChamaMember[]
+    nudges       Nudge[]      // ➕ Add this line
+
 }
 
 model Wallet {
