@@ -5,8 +5,9 @@ import { WalletsModule } from './wallets/wallets.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { GoalsModule } from './goals/goals.module';
 import { ChamasModule } from './chamas/chamas.module';
+import { NudgesModule } from './nudges/nudges.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, WalletsModule, TransactionsModule, GoalsModule, ChamasModule],
+  imports: [UsersModule, AuthModule, WalletsModule, TransactionsModule, GoalsModule, ChamasModule, NudgesModule],
 })
 export class AppModule {}

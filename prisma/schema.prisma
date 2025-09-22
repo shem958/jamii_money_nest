@@ -74,3 +74,15 @@ model ChamaMember {
   user  User  @relation(fields: [userId], references: [id])
   chama Chama @relation(fields: [chamaId], references: [id])
 }
+
+model Nudge {
+  id          String   @id @default(cuid())
+  userId      String
+  message     String        // e.g. “Remember to save for your goal!”
+  type        String        // e.g. reminder | tip | alert
+  scheduledAt DateTime      // when to send the nudge
+  createdAt   DateTime @default(now())
+  read        Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
