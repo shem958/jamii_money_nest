@@ -1,5 +1,4 @@
-// src/users/dto/create-user.dto.ts
-import { IsEmail, IsNotEmpty, IsString, IsNumber, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, IsPhoneNumber, IsNumber, MinLength } from 'class-validator';
 
 export class CreateUserDto {
     @IsNotEmpty()
@@ -10,10 +9,11 @@ export class CreateUserDto {
     email: string;
 
     @IsNotEmpty()
-    @IsString()
+    @IsPhoneNumber() // Adjust region if needed, e.g. @IsPhoneNumber('KE')
     phone: string;
 
     @IsNotEmpty()
+    @IsString()
     @MinLength(6)
     password: string;
 
